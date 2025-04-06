@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Heart Disease Prediction System</h1>
+
+    <form action="/predict" method="POST">
+        <label>Age:</label>
+        <input type="number" name="age" required>
+    
+        <label>Sex (0 = Female, 1 = Male):</label>
+        <input type="number" name="sex" required>
+    
+        <label>Resting Blood Pressure (trestbps):</label>
+        <input type="number" name="trestbps" required>
+    
+        <label>Cholesterol Level (chol):</label>
+        <input type="number" name="chol" required>
+    
+        <label>Fasting Blood Sugar > 120 mg/dl (fbs) [0/1]:</label>
+        <input type="number" name="fbs" required>
+    
+        <label>Resting ECG Results (restecg):</label>
+        <input type="number" name="restecg" required>
+    
+        <label>Max Heart Rate Achieved (thalach):</label>
+        <input type="number" name="thalach" required>
+    
+        <label>Exercise Induced Angina (exang) [0/1]:</label>
+        <input type="number" name="exang" required>
+    
+        <label>ST Depression Induced by Exercise (oldpeak):</label>
+        <input type="number" name="oldpeak" required>
+    
+        <label>Number of Major Vessels Colored by Fluoroscopy (ca):</label>
+        <input type="number" name="ca" required>
+    
+        <!-- Categorical Features -->
+        <label>Chest Pain Type (cp):</label>
+        <select name="cp">
+            <option value="1">Typical Angina</option>
+            <option value="2">Atypical Angina</option>
+            <option value="3">Non-anginal Pain</option>
+            <option value="4">Asymptomatic</option>
+        </select>
+    
+        <label>Thalassemia (thal):</label>
+        <select name="thal">
+            <option value="1">Normal</option>
+            <option value="2">Fixed Defect</option>
+            <option value="3">Reversible Defect</option>
+        </select>
+    
+        <label>Slope of Peak Exercise ST Segment (slope):</label>
+        <select name="slope">
+            <option value="1">Upsloping</option>
+            <option value="2">Flat</option>
+            <option value="3">Downsloping</option>
+        </select>
+    
+        <button type="submit">Predict</button>
+    </form>
+    
+    <!-- Display Prediction Result -->
+    {% if prediction_text %}
+        <h2>Prediction Result:</h2>
+        <p>{{ prediction_text }}</p>
+    {% endif %}
+</body>
+</html>
